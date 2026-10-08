@@ -41,7 +41,7 @@ body.forest-home .header .button:hover{background:#4b7350}
 #home .department:hover,#home .department.selected{background:#e6edda}
 body:has(#detail[open]) #home .world{width:100%}
 #detail::backdrop{background:#183b2620}
-.nature-motion{position:absolute;z-index:4;right:3.5%;top:57px;border:1px solid #f5f6e2ad;border-radius:20px;background:#f7f8e6d9;color:#486542;padding:8px 13px;font-size:9px;backdrop-filter:blur(8px)}
+.nature-motion{position:absolute;z-index:4;right:calc(3.5% + 52px);top:auto;bottom:30px;border:1px solid #f5f6e2ad;border-radius:20px;background:#f7f8e6d9;color:#486542;padding:8px 13px;font-size:9px;backdrop-filter:blur(8px)}
 .nature-motion:hover{background:#fffdeb}
 @media(min-width:1700px){
  #home .intro{top:30px}
@@ -67,7 +67,7 @@ body:has(#detail[open]) #home .world{width:100%}
  #home .intro h1{font-size:24px;letter-spacing:-.8px;margin:7px 0}
  #home .intro p{font-size:8px}
  #home .world-top{display:none}
- .nature-motion{top:108px;right:50%;transform:translateX(50%);font-size:8px;white-space:nowrap;padding:6px 11px}
+ .nature-motion{top:auto;bottom:73px;right:calc(5% + 46px);transform:none;font-size:8px;white-space:nowrap;padding:6px 11px}
  #home .tree-label{min-height:38px;padding:5px 10px 5px 5px;font-size:9px;gap:6px}
  #home .tree-label b{height:25px;width:25px;font-size:13px}
  #home .tree-label>span{display:none}
