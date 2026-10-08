@@ -2,6 +2,13 @@
 
 Bản frontend mới, dùng Three.js + Vite, dữ liệu từ website Bizmasi đã thu thập ngày 08/10/2026.
 
+## So sánh hai phương án cây
+
+- Bản 02 đang làm: cây nở hoa, nhãn gắn cố định trên nhánh và chỉ hiện khi xoay đúng mặt. Tiểu cảnh đá, sỏi, dương xỉ, hoa nhỏ quanh gốc.
+- Bản 02 chạy local tại http://127.0.0.1:4173/; mã nguồn được quản lý trên GitHub.
+- Bản 01 giữ nguyên tại E:/Bizmasi/archives/tree-v1-2026-10-08; xem riêng tại http://127.0.0.1:4174/.
+- Hướng dẫn mở bản lưu: E:/Bizmasi/archives/README.md.
+
 ## Chạy
 Yêu cầu Node.js 20.19+ hoặc 22.12+.
 ```powershell
@@ -40,6 +47,9 @@ Website không thu thập hoặc gửi câu trả lời khảo sát; người d�
 
 ## Cấu trúc
 - src/tree.js: hình học, vật liệu, ánh sáng, camera, tương tác.
+- src/wildlife.js, src/animal-models.js, src/nature-state.js: tạo hình, chuyển động và chu kỳ động vật.
+- src/root-garden.js: đá phủ rêu, sỏi, dương xỉ và hoa quanh rễ cây.
+- src/forest.css: giao diện trang chủ phương án 02.
 - src/app.js: router hash, dữ liệu, tìm kiếm, trang và dialog.
 - src/style.css: hệ thống giao diện.
 - public/data: dữ liệu xuất từ archive.
@@ -50,3 +60,20 @@ Website không thu thập hoặc gửi câu trả lời khảo sát; người d�
 
 ## Trước khi thay thế website đang hoạt động
 Bản này chạy cục bộ, chưa thay domain hiện tại. Khi triển khai chính thức cần chọn hosting, tích hợp backend nếu muốn đăng nhập/nộp biểu mẫu ngay trên giao diện mới, và cấu hình route/redirect để bảo toàn URL và SEO của website cũ. Hiện dùng hash router cho bản xem thử. Google Fonts có fallback hệ thống nếu không có mạng.
+
+## Bản động vật hiện tại — 08/10/2026
+
+- Lá, cỏ và dương xỉ đứng yên; không gắn shader gió.
+- 9 chim có lông cánh, đuôi, mắt, mỏ và chân: 2.156 tam giác/con.
+- Điểm đậu ở nhiều cao độ và cả mặt trước/sau cây. Mỗi chim có đường bay riêng và thi thoảng chuyển cành.
+- Hạ cánh có giảm tốc, ngẩng thân, đưa chân ra bám, gấp cánh dần và nhún nhẹ khi chạm cành.
+- 4 sóc chia thành 2 đôi gần nhau, quay mặt vào nhau ăn; không còn sóc leo/cất hạt.
+- Khi quay lại, hai đôi chọn vị trí ở phía gốc cây gần camera, giữ nguyên góc người dùng đã xoay.
+- Xoay/zoom/chọn nhánh làm động vật rời đi. Quay lại sau 20 giây yên tĩnh trên đồng hồ cảnh đang hoạt động.
+- Có nút tạm dừng và hỗ trợ prefers-reduced-motion.
+- Bóng cây được lưu lại; sóc dùng bóng tiếp xúc nhẹ. Mật độ lá và độ phân giải tự điều chỉnh theo tốc độ máy.
+- Mã nguồn website: https://github.com/huy17012001huy-cyber/bizmasi. Dữ liệu cào và các bản lưu ở ngoài repository website.
+
+## Kiểm tra chuyển động
+
+Chạy node --test scripts/nature-state.test.mjs scripts/wildlife.test.mjs. Kịch bản trình duyệt: scripts/wildlife-browser-check.js (Playwright CLI run-code --filename).

@@ -1,0 +1,40 @@
+async (page) => {
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ page.on('console',m=>{if(m.type()==='error')errors.push(m.text().slice(0,400));});
+ const get=()=>page.evaluate(()=>window.__bizmasiScene.getState());
+ await page.setViewportSize({width:1440,height:1000});
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.goto('http://127.0.0.1:4173/');
+ await page.waitForFunction(()=>window.__bizmasiScene?.getState().wildlife.clock>=3.9);
+ const landing=await get();
+ await page.screenshot({path:'E:/Bizmasi/output/playwright/birds-detailed-landing.png'});
+ await page.waitForFunction(()=>window.__bizmasiScene.getState().wildlife.phase==='calm');
+ await page.screenshot({path:'E:/Bizmasi/output/playwright/four-squirrels-front.png'});
+ await page.evaluate(()=>window.__bizmasiScene.focus(4));
+ const disturbed=await get();
+ await page.waitForFunction(()=>window.__bizmasiScene.getState().wildlife.phase==='hidden');
+ const hidden=await get();
+ if(hidden.wildlife.animals.some(a=>a.visible))throw Error('Animals did not hide');
+ await page.waitForFunction(()=>window.__bizmasiScene.getState().wildlife.phase==='returning',null,{timeout:26000});
+ const returning=await get();
+ const quietDuration=returning.wildlife.clock-disturbed.wildlife.clock;
+ if(quietDuration<19.8||quietDuration>21)throw Error('Wrong quiet period: '+quietDuration);
+ await page.waitForFunction(()=>window.__bizmasiScene.getState().wildlife.phase==='calm');
+ await page.waitForTimeout(600);
+ const calm=await get();
+ const squirrels=calm.wildlife.animals.filter(a=>a.kind==='eater');
+ if(squirrels.length!==4||squirrels.some(a=>!a.visible))throw Error('Expected four squirrels');
+ const checks=squirrels.map(a=>{
+   const [x,,z]=a.position,[cx,,cz]=calm.position;
+   const partner=squirrels.find(p=>p.index===(a.index^1));
+   const dx=partner.position[0]-x,dz=partner.position[2]-z;
+   return {index:a.index,front:(x*cx+z*cz)/Math.hypot(cx,cz),pairDistance:Math.hypot(dx,dz),facing:(a.facing[0]*dx+a.facing[2]*dz)/Math.hypot(dx,dz)};
+ });
+ if(checks.some(a=>a.front<2||a.facing<.99||a.pairDistance>1.2))throw Error('Squirrel pairs must return in front, facing each other');
+ await page.screenshot({path:'E:/Bizmasi/output/playwright/four-squirrels-after-orbit.png'});
+ const a=await page.evaluate(()=>({time:performance.now(),frames:window.__bizmasiScene.getState().frames}));
+ await page.waitForTimeout(3000);
+ const b=await page.evaluate(()=>({time:performance.now(),state:window.__bizmasiScene.getState()}));
+ const fps=(b.state.frames-a.frames)*1000/(b.time-a.time);
+ return {landingBirds:landing.wildlife.animals.filter(a=>a.mode==='landing').length,quietDuration,squirrels:checks,fps,quality:b.state.quality,errors};
+}
