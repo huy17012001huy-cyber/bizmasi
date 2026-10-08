@@ -1,0 +1,66 @@
+{
+  "name": "Bizmasi — Đại cổ thụ tri thức",
+  "renderer": "Three.js 0.180.0",
+  "representation": {
+    "trunk": "Custom tapered fluted trunk, 12 buttress roots, six connected primary branches",
+    "canopy": "Six semantic groups, layered crowns, instanced leaf geometry",
+    "setting": "Daylight meadow, grass, rocks, hills, HDRI sky"
+  },
+  "camera": {
+    "overview": [
+      17,
+      4.4,
+      30
+    ],
+    "target": [
+      0,
+      9,
+      0
+    ],
+    "fieldOfViewDesktop": 38,
+    "fieldOfViewNarrow": 50,
+    "distanceRange": [
+      22,
+      62
+    ],
+    "focusDurationMs": 1100,
+    "reducedMotionDurationMs": 1
+  },
+  "lighting": {
+    "hemisphere": 2.1,
+    "sun": 3.5,
+    "rim": 2.8,
+    "fill": 1.3,
+    "exposure": 1.15,
+    "toneMapping": "ACES Filmic",
+    "hdriUsage": "Background only; direct lights illuminate scene"
+  },
+  "rendering": {
+    "devicePixelRatioCap": 1.6,
+    "instancing": true,
+    "onDemand": true,
+    "shadowMap": 2048
+  },
+  "sources": [
+    {
+      "url": "https://github.com/viettranx/3dviz-pro-max",
+      "usage": "Object reasoning, craft, lighting and inspection guidance; custom scene implementation"
+    },
+    {
+      "url": "https://polyhaven.com/a/kloppenheim_05_puresky",
+      "license": "CC0",
+      "authors": [
+        "Greg Zaal",
+        "Jarod Guest"
+      ],
+      "usage": "HDRI background, blue channel color adjustment at runtime"
+    },
+    {
+      "url": "https://polyhaven.com/a/jolcham_oak_bark_01",
+      "license": "CC0",
+      "author": "Charlotte Baglioni",
+      "usage": "Diffuse and normal maps"
+    }
+  ],
+  "validation": "docs/validation-report.md"
+}

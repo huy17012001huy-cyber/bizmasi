@@ -1,0 +1,112 @@
+/* The knowledge tree is the homepage: a full-viewport, inhabitable woodland. */
+/* Superseded night palette below is overridden by the daylight section at the end. */
+#home{position:relative}
+#home .hero{display:block;position:relative;width:100%;height:100svh;min-height:800px;padding:0;overflow:hidden;background:#233b35}
+#home .world{position:absolute;inset:0;width:100%;height:100%;margin:0;background:#233b35}
+#home .world::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,27,22,.42),transparent 19%,transparent 65%,rgba(9,24,20,.6));z-index:1}
+#home #canvas-wrap{inset:0}
+#home #labels{z-index:3}
+body.forest-home .header{position:absolute;inset:0 0 auto 0;z-index:20;height:88px;color:#eef1df;border-color:#e0e9ce24;background:transparent;padding:0 3.5%}
+body.forest-home .header nav a.active{border-color:#c9d6a8}
+body.forest-home .header .button{border-color:#d2ddba70;background:#c7d9ab18;color:#f3f5e5;backdrop-filter:blur(12px)}
+body.forest-home .brand svg{color:#c2d5a3}
+body.forest-home .header .button:hover{background:#dae6c330}
+#home .intro{position:absolute;left:3.5%;bottom:67px;padding:0;z-index:4;max-width:370px;pointer-events:none;color:#eef1df}
+#home .intro .eyebrow{font-size:8px;letter-spacing:2.7px;color:#c7d5ad;display:flex;align-items:center;gap:6px}
+#home .intro h1{font-size:40px;line-height:1.16;letter-spacing:-1.6px;margin:17px 0 13px;text-shadow:0 2px 24px #12251970}
+#home .intro h1 em{color:#c2d3a6}
+#home .intro p{font-size:10px;line-height:1.85;color:#d3decd;max-width:285px;margin:0}
+#home .intro .button{pointer-events:auto;margin-top:19px;padding:10px 0;background:transparent;border:0;border-bottom:1px solid #d6dfbb77;border-radius:0;color:#e8edda;font-size:10px;gap:30px}
+#home .intro-note{display:none}
+#home .world-top{top:113px;left:3.5%;right:3.5%;color:#c0cfb0;z-index:3;letter-spacing:2px;font-size:8px}
+#home .world-top .edition{font-size:8px;display:inline}
+#home .status-dot{background:#ccdbae;box-shadow:0 0 8px #d6e4a244}
+#home #scene-status{color:#e1e9cd;z-index:5;top:44%;font-size:13px}
+#home .tree-label{border:1px solid #d4e1b845;background:#152e269e;box-shadow:0 6px 25px #0b191f1a;color:#edf1dc;backdrop-filter:blur(9px);border-radius:28px;padding:9px 14px 9px 7px;font-size:10px;gap:8px;letter-spacing:.1px;transition:background .2s,border .2s;max-width:260px}
+#home .tree-label b{background:#b8ca9630;border:1px solid #d1dfa557;color:#e5ebc9;width:25px;height:25px;font-size:9px}
+#home .tree-label .label-arrow{color:#ccdbb0;margin-left:8px}
+#home .tree-label:hover,#home .tree-label.selected{background:#bacc92;border-color:#d8e8b1;color:#223c29}
+#home .tree-label.selected b,#home .tree-label:hover b{background:#2e4b3133;color:#233b26;border-color:#516b3955}
+#home .tree-label.selected .label-arrow{color:#304c30}
+#home .scene-caption{bottom:30px;left:50%;color:#d4dfc1;font-size:9px;letter-spacing:.3px;z-index:3;background:transparent;gap:12px}
+#home .ring-icon{font-size:26px;line-height:1}
+#home .ground-caption{bottom:31px;right:3.5%;left:auto;transform:none;color:#b0c19e;font-size:7px;letter-spacing:1.6px;z-index:3}
+#home .scene-controls{right:3.5%;bottom:85px;z-index:3;background:#17302799;backdrop-filter:blur(12px);border:1px solid #d9e6c53b;border-radius:30px}
+#home .scene-controls button{width:38px;height:39px;color:#d9e3c2;border-color:#d3e5b425;font-size:23px}
+#home .scene-controls button:hover{background:#afc08b33}
+#home .branch-bar{background:#172f26;color:#e2e8ce;border-color:#cdddb22b;padding:23px 3.5% 27px}
+#home .branch-heading .eyebrow{color:#b4c69d;font-size:8px}
+#home .branch-heading button{color:#c7d5b5}
+#home .department{border-color:#cdd9b526}
+#home .department strong{font-size:10px;font-weight:400}
+#home .department small{color:#9eb38d}
+#home .dept-icon{background:#b3c59415;color:#c9d8a6;border:1px solid #c6dba532}
+#home .department:hover,#home .department.selected{background:#adc58e19}
+body:has(#detail[open]) #home .world{width:100%}
+#detail::backdrop{background:#0c231b28}
+@media(min-width:1700px){#home .intro h1{font-size:47px}#home .intro{bottom:90px}#home .scene-controls{bottom:100px}}
+@media(max-width:1100px){#home .hero{min-height:760px}#home .intro{max-width:280px}#home .intro h1{font-size:34px}#home .ground-caption{display:none}}
+@media(max-width:760px){
+ body.forest-home .header{height:106px;min-height:106px;padding:16px 5% 0;gap:8px}
+ body.forest-home .header nav{height:39px;font-size:9px}
+ body.forest-home .brand span{font-size:22px}
+ body.forest-home .header-actions .button{padding:8px;font-size:8px}
+ body.forest-home .header-actions{gap:7px}
+ #home .hero{height:100svh;min-height:760px}
+ #home .world{inset:0;height:100%;width:100%;margin:0}
+ #home .world-top{top:126px;left:5%;right:5%;font-size:6px;letter-spacing:1.3px}
+ #home .world-top .edition{font-size:6px;letter-spacing:1px}
+ #home .intro{bottom:72px;left:6%;max-width:245px}
+ #home .intro .eyebrow{font-size:6px;letter-spacing:1.7px}
+ #home .intro h1{font-size:29px;letter-spacing:-.8px;margin:11px 0}
+ #home .intro h1 br,#home .intro h1 em br{display:block}
+ #home .intro p{font-size:9px;max-width:230px;line-height:1.7}
+ #home .intro .button{margin-top:10px;padding:7px 0;font-size:9px}
+ #home .tree-label{font-size:8px;padding:5px 9px 5px 5px;gap:5px}
+ #home .tree-label b{width:20px;height:20px;font-size:7px}
+ #home .tree-label>span{display:none}
+ #home .tree-label::after{content:attr(data-short)}
+ #home .scene-caption{bottom:23px;left:50%;font-size:7px;gap:7px;letter-spacing:0;white-space:nowrap}
+ #home .scene-controls{right:5%;bottom:88px}
+ #home .scene-controls button{height:33px;width:32px;font-size:20px}
+ #home .branch-heading{margin-bottom:15px}
+ #home .branch-heading .eyebrow{font-size:6px}
+ #home .department strong{font-size:10px}
+ #home .branch-bar{padding:22px 5%}
+}
+/* Daylight direction follows the owner's Bizmasi reference. */
+body.forest-home .header{position:relative;height:80px;background:#fbfcf8;color:#293c2b;border-color:#d7dece}
+body.forest-home .header .brand svg{color:#456746}
+body.forest-home .header nav a.active{border-color:#648352}
+body.forest-home .header .button{background:#355a37;border-color:#355a37;color:#fff}
+body.forest-home .header .button:hover{background:#54784b}
+#home .hero{height:calc(100svh - 80px);min-height:740px;background:#afd8e5}
+#home .world{background:#afd8e5}
+#home .world::after{background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 70%,rgba(21,40,18,.32))}
+#home .intro{top:23px;bottom:auto;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;padding:15px 30px 17px;text-align:center;border:1px solid #dbd79c7d;border-radius:10px;background:#193e20e8;box-shadow:0 9px 36px #1b422028;backdrop-filter:blur(10px)}
+#home .intro .eyebrow{font-size:6px;letter-spacing:1.7px;justify-content:center;color:#d9dfac}
+#home .intro h1{font-size:27px;font-family:'Literata',Georgia,serif;line-height:1.3;letter-spacing:-.7px;margin:5px 0 6px;white-space:nowrap}
+#home .intro p{font-size:10px;max-width:none;color:#d1dfa8;line-height:1.5}
+#home .intro .button,#home .intro-note{display:none}
+#home .world-top{top:28px;color:#315335;text-shadow:0 1px 6px #f6ffe980}
+#home .world-top .status-dot{background:#557735}
+#home .tree-label{background:#193d1be8;color:#f2f4dd;border-color:#c6d0938c;box-shadow:0 6px 24px #1c361c2b;padding:10px 17px 10px 9px;font-size:11px}
+#home .tree-label b{background:#9eae5d2e;color:#f1e7ad;border-color:#e0d19a8c}
+#home .tree-label:hover,#home .tree-label.selected{background:#dde7a8;color:#283f22;border-color:#fbf4c5}
+#home .scene-controls{background:#183a27ce}
+#home .scene-caption{bottom:24px;color:#fafee9;text-shadow:0 1px 8px #182b18}
+#home .ground-caption{bottom:29px;color:#e3ebd1;text-shadow:0 1px 6px #172a19}
+@media(min-width:1700px){#home .intro{top:25px;bottom:auto}#home .intro h1{font-size:30px}}
+@media(max-width:1100px){#home .intro{max-width:85%}#home .intro h1{font-size:24px}#home .world-top .edition{display:none}#home .hero{min-height:710px}}
+@media(max-width:760px){
+ body.forest-home .header{height:106px;min-height:106px}
+ #home .hero{height:calc(100svh - 106px);min-height:655px}
+ #home .intro{top:17px;left:50%;bottom:auto;max-width:90%;padding:12px 18px}
+ #home .intro .eyebrow{font-size:5px;letter-spacing:1px}
+ #home .intro h1{font-size:19px;letter-spacing:-.6px;margin:5px 0}
+ #home .intro p{font-size:7px;max-width:none}
+ #home .world-top{display:none}
+ #home .tree-label{font-size:9px;padding:6px 10px 6px 5px}
+ #home .scene-controls{bottom:60px}
+ #home .scene-caption{font-size:7px;bottom:20px}
+}
